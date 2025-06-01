@@ -5,13 +5,13 @@ import sys
 
 def main():
     parser = argparse.ArgumentParser(
-            prog="OMDB CLI Tool", description="Search or Look for a Movie/Show/Episode from the OMDB.", epilog="If --search is given all arguments are valid except --imdb and --plot, if not, all arguments are valid except --page")
+            prog="OMDB CLI Tool", description="Search or Look for a Movie or Show from the OMDB.", epilog="If --search is given all arguments are valid except --imdb and --plot, if not, all arguments are valid except --page")
 
     # Search values
     parser.add_argument("--search", action="store_true")
     parser.add_argument("--title")
     parser.add_argument("--year", default=None)
-    parser.add_argument("--type", default="movie", choices=["movie", "series", "episode"])
+    parser.add_argument("--type", default="movie", choices=["movie", "series"])
     parser.add_argument("--page", default=1, choices=["Range from 1  to 100"])
 
     # Searchless values

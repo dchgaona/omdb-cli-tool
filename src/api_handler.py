@@ -12,7 +12,7 @@ def get_by_title(s_title: str, s_year: str = None, s_type: str = "movie", s_plot
     if not s_title:
         raise ValueError("Title not given")
 
-    if s_type not in ("movie", "series", "episode"):
+    if s_type not in ("movie", "series"):
         raise ValueError("Type of content is not valid")
 
     if s_plot not in ("short",  "full"):
@@ -42,7 +42,7 @@ def get_by_id(s_id: str, s_year: str = None, s_type: str = "movie", s_plot: str 
     if not s_id:
         raise ValueError("IMDB Id not given")
 
-    if s_type not in ("movie", "series", "episode"):
+    if s_type not in ("movie", "series"):
         raise ValueError("Type of content is not valid")
 
     if s_plot not in ("short",  "full"):
@@ -71,7 +71,7 @@ def search_by_name(s_title, s_type: str = "movie", s_year: str = None, s_page: i
     if not s_title:
         raise ValueError("Search term not given")
 
-    if s_type not in ("movie", "series", "episode"):
+    if s_type not in ("movie", "series"):
         raise ValueError("Type of content is not valid")
 
     if int(s_page) not in range(0, 101):
