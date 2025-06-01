@@ -24,15 +24,16 @@ def main():
     if args.search:
         try:
             response = search_by_name(
-                args.title, args.type, args.year, args.page)
+                args.title, args.type, args.year, int(args.page))
+
+            if len(response['Search']) < 1:
+                return sys.exit("No results for that search were found")
 
             print("-------------------------------")
-            print(response.Title)
-            print(
-                f"Year: {response.Year}, Runtime: {response.Runtime}, Genre: {response.Genre}")
-            print(response.Plot)
-            print(
-                f"Ratings:\nRotten Tomatoes: {response.Ratings[1].Value}\nMetacritic: {response.Ratings[2].Value}")
+            for n in range(0, len(response['Search'])):
+                print(
+                    f"{n+1}. {response['Search'][n]['Title']}\nYear: {response['Search'][n]['Year']}\nIMDB Id: {response['Search'][n]['imdbID']}")
+
             print("-------------------------------")
 
         except ValueError as e:
@@ -45,16 +46,19 @@ def main():
                                      args.type,  args.plot)
 
                 print("-------------------------------")
-                print(response.Title)
+                print(response['Title'])
                 print(
-                    f"Year: {response.Year}, Runtime: {response.Runtime}, Genre: {response.Genre}")
-                print(response.Plot)
+                    f"Year: {response['Year']}, Runtime: {response['Runtime']}, Genre: {response['Genre']}")
+                print(response['Plot'])
                 print(
-                    f"Ratings:\nRotten Tomatoes: {response.Ratings[1].Value}\nMetacritic: {response.Ratings[2].Value}")
+                    f"Ratings:\n\tRotten Tomatoes: {response['Ratings'][1]['Value']}\n\tMetacritic: {response['Ratings'][2]['Value']}")
                 print("-------------------------------")
 
             except ValueError as e:
                 return sys.exit(e)
+
+            except KeyError:
+                return sys.exit(f"No {args.type} was found")
 
         else:
             try:
@@ -62,16 +66,19 @@ def main():
                     args.title, args.year, args.type, args.plot)
 
                 print("-------------------------------")
-                print(response.Title)
+                print(response['Title'])
                 print(
-                    f"Year: {response.Year}, Runtime: {response.Runtime}, Genre: {response.Genre}")
-                print(response.Plot)
+                    f"Year: {response['Year']}, Runtime: {response['Runtime']}, Genre: {response['Genre']}")
+                print(response['Plot'])
                 print(
-                    f"Ratings:\nRotten Tomatoes: {response.Ratings[1].Value}\nMetacritic: {response.Ratings[2].Value}")
+                    f"Ratings:\n\tRotten Tomatoes: {response['Ratings'][1]['Value']}\n\tMetacritic: {response['Ratings'][2]['Value']}")
                 print("-------------------------------")
 
             except ValueError as e:
                 return sys.exit(e)
+
+            except KeyError:
+                return sys.exit(f"No {args.type} was found")
 
 
 if __name__ == "__main__":

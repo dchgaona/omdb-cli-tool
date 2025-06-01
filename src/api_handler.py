@@ -74,7 +74,7 @@ def search_by_name(s_title, s_type: str = "movie", s_year: str = None, s_page: i
     if s_type not in ("movie", "series", "episode"):
         raise ValueError("Type of content is not valid")
 
-    if s_page not in range(1, 101):
+    if int(s_page) not in range(0, 101):
         raise ValueError("Number of page is not valid")
 
 
