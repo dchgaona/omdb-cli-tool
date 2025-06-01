@@ -100,8 +100,8 @@ Dom Cobb is a skilled thief, the absolute best in the dangerous art of extractio
 Ratings:
 	Rotten Tomatoes: 87%
 	Metacritic: 74/100
-------------------------------
--```
+-------------------------------
+```
 
 ### Search for TV series
 ```bash
