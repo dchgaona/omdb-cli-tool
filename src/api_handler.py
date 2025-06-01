@@ -12,6 +12,13 @@ def get_by_title(s_title: str, s_year: str = None, s_type: str = "movie", s_plot
     if not s_title:
         raise ValueError("Title not given")
 
+    if s_type not in ("movie", "series", "episode"):
+        raise ValueError("Type of content is not valid")
+
+    if s_plot not in ("short",  "full"):
+        raise ValueError("Type of plot is not valid")
+
+
     REQUEST_URL = URL + f"t={s_title}&type={s_type}&plot={s_plot}"
 
     if s_year:
@@ -35,6 +42,13 @@ def get_by_id(s_id: str, s_year: str = None, s_type: str = "movie", s_plot: str 
     if not s_id:
         raise ValueError("IMDB Id not given")
 
+    if s_type not in ("movie", "series", "episode"):
+        raise ValueError("Type of content is not valid")
+
+    if s_plot not in ("short",  "full"):
+        raise ValueError("Type of plot is not valid")
+
+
     REQUEST_URL = URL + f"i={s_id}&type={s_type}&plot={s_plot}"
 
     if s_year:
@@ -52,10 +66,18 @@ def get_by_id(s_id: str, s_year: str = None, s_type: str = "movie", s_plot: str 
         return f"Error: {e}"
 
 
-def search_by_name(s_title, s_type: str = "movie", s_year: str = None, s_page: str = "1"):
+def search_by_name(s_title, s_type: str = "movie", s_year: str = None, s_page: int = 1):
 
     if not s_title:
         raise ValueError("Search term not given")
+
+    if s_type not in ("movie", "series", "episode"):
+        raise ValueError("Type of content is not valid")
+
+    if s_page not in range(1, 101):
+        raise ValueError("Number of page is not valid")
+
+
 
     REQUEST_URL = URL + f"s={s_title}&type={s_type}&page={s_page}"
 
@@ -63,7 +85,7 @@ def search_by_name(s_title, s_type: str = "movie", s_year: str = None, s_page: s
         REQUEST_URL += f"&y={s_year}"
 
     try:
-        response.requests.get(REQUEST_URL)
+        response = requests.get(REQUEST_URL)
 
         if response.status_code == 200:
             posts = response.json()

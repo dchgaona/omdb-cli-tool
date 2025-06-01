@@ -1,3 +1,3 @@
-from api_handler import get_by_title, get_by_id
+from api_handler import get_by_title, get_by_id, search_by_name
 
-print(get_by_id(s_id="tt14858658"))
+print(search_by_name(s_title="Guardians"))
