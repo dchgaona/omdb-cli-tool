@@ -12,11 +12,11 @@ def main():
     parser.add_argument("--title")
     parser.add_argument("--year", default=None)
     parser.add_argument("--type", default="movie", choices=["movie", "series"])
-    parser.add_argument("--page", default=1, choices=["Range from 1  to 100"])
+    parser.add_argument("--page", default=1)
 
     # Searchless values
 
-    parser.add_argument("--imdb", choices=["IMDB ID"])
+    parser.add_argument("--imdb")
     parser.add_argument("--plot", default="short", choices=["short", "full"])
 
     args = parser.parse_args()
